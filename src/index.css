@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #080808;
+  --card: #f7f7f7;
+  --card-foreground: #080808;
+  --popover: #f2f2f2;
+  --popover-foreground: #080808;
+  --primary: #22c55e;
+  --primary-foreground: #fafafa;
+  --secondary: #22c55e;
+  --secondary-foreground: #fafafa;
+  --muted: #8c8c8c;
+  --muted-foreground: #5c5c5c;
+  --accent: #22c55e;
+  --accent-foreground: #fafafa;
+  --destructive: #ef4444;
+  --border: #d9d9d9;
+  --input: #d9d9d9;
+  --ring: #22c55e;
+  --chart-1: #22c55e;
+  --chart-2: #34d369;
+  --chart-3: #16a34a;
+  --chart-4: #4ade80;
+  --chart-5: #15803d;
+  --sidebar: #f2f2f2;
+  --sidebar-foreground: #080808;
+  --sidebar-primary: #22c55e;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #22c55e;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #d9d9d9;
+  --sidebar-ring: #22c55e;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #fafafa;
+  --card: #242424;
+  --card-foreground: #fafafa;
+  --popover: #0d0d0d;
+  --popover-foreground: #fafafa;
+  --primary: #22c55e;
+  --primary-foreground: #080808;
+  --secondary: #22c55e;
+  --secondary-foreground: #080808;
+  --muted: #737373;
+  --muted-foreground: #a3a3a3;
+  --accent: #22c55e;
+  --accent-foreground: #080808;
+  --destructive: #ef4444;
+  --border: #1f1f1f;
+  --input: #1f1f1f;
+  --ring: #22c55e;
+  --chart-1: #22c55e;
+  --chart-2: #34d369;
+  --chart-3: #16a34a;
+  --chart-4: #4ade80;
+  --chart-5: #15803d;
+  --sidebar: #0d0d0d;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #22c55e;
+  --sidebar-primary-foreground: #080808;
+  --sidebar-accent: #22c55e;
+  --sidebar-accent-foreground: #080808;
+  --sidebar-border: #1f1f1f;
+  --sidebar-ring: #22c55e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html, body {
+    @apply m-0 p-0 bg-background text-foreground;
+  }
+  #root {
+    @apply m-0 p-0;
+  }
+}
+
+/* Custom animations */
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+  }
+}
