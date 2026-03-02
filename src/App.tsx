@@ -25,7 +25,7 @@ function LandingPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm text-muted-foreground">
-                © 2026 vibecheck. All rights reserved.
+                © 2026 Atharva Khairnar All rights reserved.
               </p>
               <div className="flex gap-6">
                 <a href="#" className="text-sm text-muted-foreground hover:text-green-500 transition-colors">Privacy</a>
