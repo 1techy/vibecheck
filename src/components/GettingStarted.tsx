@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Github } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
 
@@ -7,105 +7,54 @@ export function GettingStarted() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center px-4 py-24">
+      <div className="w-full max-w-lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="space-y-8"
+          className="space-y-6"
         >
-          <div className="space-y-4">
-            <Button
-              variant="ghost"
-              className="text-green-500 hover:text-green-600"
-              onClick={() => navigate("/")}
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-            
-            <h1 className="text-5xl font-bold">Getting Started</h1>
-            <p className="text-xl text-muted-foreground">
-              Welcome to vibecheck! Let's get your AI code security scanning set up.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 }}
-              className="border border-green-500/20 rounded-lg p-6 hover:border-green-500/40 transition-colors"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-green-500">1. Install</h2>
-              <p className="text-muted-foreground mb-4">
-                Install vibecheck CLI tool for your development environment.
-              </p>
-              <code className="bg-black/40 p-3 rounded text-green-500 block font-mono text-sm">
-                npm install -g vibecheck
-              </code>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="border border-green-500/20 rounded-lg p-6 hover:border-green-500/40 transition-colors"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-green-500">2. Configure</h2>
-              <p className="text-muted-foreground mb-4">
-                Set up your repository and configure scanning rules.
-              </p>
-              <code className="bg-black/40 p-3 rounded text-green-500 block font-mono text-sm">
-                vibecheck init
-              </code>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="border border-green-500/20 rounded-lg p-6 hover:border-green-500/40 transition-colors"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-green-500">3. Scan</h2>
-              <p className="text-muted-foreground mb-4">
-                Run your first scan to detect AI-generated vulnerabilities.
-              </p>
-              <code className="bg-black/40 p-3 rounded text-green-500 block font-mono text-sm">
-                vibecheck scan .
-              </code>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-              className="border border-green-500/20 rounded-lg p-6 hover:border-green-500/40 transition-colors"
-            >
-              <h2 className="text-2xl font-bold mb-4 text-green-500">4. Integrate</h2>
-              <p className="text-muted-foreground mb-4">
-                Add vibecheck to your CI/CD pipeline for automated scanning.
-              </p>
-              <code className="bg-black/40 p-3 rounded text-green-500 block font-mono text-sm">
-                See docs for CI/CD
-              </code>
-            </motion.div>
-          </div>
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to home
+          </button>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-12 p-8 border border-green-500/20 rounded-lg bg-green-500/5"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.05, duration: 0.25 }}
+            className="rounded-2xl border border-border/70 bg-background/80 shadow-xl shadow-black/40 backdrop-blur-sm p-8 space-y-6"
           >
-            <h2 className="text-2xl font-bold mb-4">Need Help?</h2>
-            <p className="text-muted-foreground mb-4">
-              Check out our documentation or reach out to our support team for assistance.
-            </p>
-            <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold">
-              View Documentation
-            </Button>
+            <div className="space-y-2">
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Log <span className="text-green-500">in</span>
+              </h1>
+              <p className="text-sm sm:text-base text-muted-foreground">
+                Connect GitHub so we can scan your repositories and pull requests.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <Button
+                className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold gap-2 py-5 text-sm sm:text-base"
+                onClick={() => {
+                  window.location.href = "/auth/github"
+                }}
+              >
+                <Github className="h-5 w-5" />
+                Continue with GitHub
+              </Button>
+
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                We request read access to repository metadata and pull requests to identify AI-generated changes and run security checks. 
+                You can revoke access at any time from your GitHub settings.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </div>

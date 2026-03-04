@@ -49,7 +49,6 @@ export function HowItWorks() {
   return (
     <section id="how-it-works" className="relative py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +64,6 @@ export function HowItWorks() {
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
           variants={containerVariants}
@@ -79,37 +77,31 @@ export function HowItWorks() {
               <motion.div 
                 key={index} 
                 variants={cardVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
               >
-                <Card className="h-full p-8 border-green-500/10 hover:border-green-500/40 hover:bg-green-500/5 hover:shadow-xl hover:shadow-green-500/20 transition-all duration-300 group">
-                  <div className="relative mb-6">
-                    <div className="inline-flex p-3 rounded-lg bg-green-500/10 group-hover:bg-green-500/20 group-hover:scale-110 transition-all duration-300">
-                      <Icon className="h-6 w-6 text-green-500 group-hover:text-green-400 transition-colors duration-300" />
+                <Card className="h-full p-7 border-border/60 bg-background/60 hover:border-green-500/70 hover:bg-green-500/5 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300 group">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-green-500/10 text-green-500 group-hover:bg-green-500/15">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <div className="absolute -top-2 -right-2 h-8 w-8 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-black flex items-center justify-center text-xs font-bold group-hover:scale-125 group-hover:shadow-lg group-hover:shadow-green-500/50 transition-all duration-300">
-                      {index + 1}
-                    </div>
+                    <span className="rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground group-hover:border-green-500/60 group-hover:text-green-400">
+                      Step {index + 1}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-green-500 transition-colors duration-300">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
+                  <h3 className="text-lg font-semibold mb-2 group-hover:text-green-500 transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
                 </Card>
               </motion.div>
             )
           })}
         </motion.div>
 
-        {/* Connecting Line (Desktop Only) */}
-        <svg className="hidden md:block w-full h-12 mb-8" viewBox="0 0 1200 50" preserveAspectRatio="none">
-          <line x1="0" y1="25" x2="1200" y2="25" stroke="url(#gradient)" strokeWidth="2" strokeDasharray="5,5" />
-          <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#ef4444" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#a855f7" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#ef4444" stopOpacity="0.3" />
-            </linearGradient>
-          </defs>
-        </svg>
+        <div className="hidden md:block w-full h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent mb-4" />
       </div>
     </section>
   )
