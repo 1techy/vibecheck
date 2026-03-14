@@ -33,7 +33,7 @@ export function Pricing() {
         "Priority support",
         "GitHub & GitLab integration",
         "Custom rules",
-        "Team collaboration"
+        "Personal workflow presets"
       ],
       popular: true
     },
