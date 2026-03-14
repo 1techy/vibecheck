@@ -2,14 +2,17 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export function Pricing() {
+  const navigate = useNavigate()
+
   const plans = [
     {
-      name: "Starter",
+      name: "Starter Loop",
       price: "$29",
       period: "/month",
-      description: "Perfect for small teams getting started",
+      description: "For personal projects validating secure AI workflows.",
       features: [
         "Up to 5 repositories",
         "100 scans per month",
@@ -19,10 +22,10 @@ export function Pricing() {
       ]
     },
     {
-      name: "Professional",
+      name: "Retention Pro",
       price: "$99",
       period: "/month",
-      description: "For growing teams with advanced needs",
+      description: "For advanced projects optimizing engagement and remediation speed.",
       features: [
         "Unlimited repositories",
         "Unlimited scans",
@@ -30,15 +33,15 @@ export function Pricing() {
         "Priority support",
         "GitHub & GitLab integration",
         "Custom rules",
-        "Team collaboration"
+        "Personal workflow presets"
       ],
       popular: true
     },
     {
-      name: "Enterprise",
+      name: "Enterprise Grid",
       price: "Custom",
       period: "",
-      description: "For large organizations with custom requirements",
+      description: "For organizations with strict security and compliance demands.",
       features: [
         "Everything in Professional",
         "Dedicated support",
@@ -53,7 +56,7 @@ export function Pricing() {
   return (
     <section id="pricing" className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,10 +68,10 @@ export function Pricing() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight mb-6">
-            Simple, <span className="text-green-500">Transparent Pricing</span>
+            Simple, <span className="text-primary">retention-ready pricing</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your team's needs. All plans include a 14-day free trial.
+            Choose the plan that fits your workflow. All plans include a 14-day free trial.
           </p>
         </motion.div>
 
@@ -84,12 +87,12 @@ export function Pricing() {
             >
               <Card className={`h-full p-8 ${
                 plan.popular 
-                  ? 'border-green-500/50 bg-green-500/5 relative hover:border-green-500/70 hover:shadow-2xl hover:shadow-green-500/30' 
-                  : 'border-green-500/10 hover:border-green-500/40 hover:bg-green-500/5 hover:shadow-xl hover:shadow-green-500/20'
-              } transition-all duration-300 group`}>
+                  ? 'border-primary/60 bg-primary/10 relative hover:border-primary/80 hover:shadow-2xl hover:shadow-primary/25' 
+                  : 'border-border/70 bg-card/70 hover:border-accent/40 hover:bg-accent/5 hover:shadow-xl hover:shadow-accent/15'
+              } transition-all duration-300 group backdrop-blur-sm`}>
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-green-500 text-black px-4 py-1 rounded-full text-sm font-semibold">
+                    <span className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">
                       Most Popular
                     </span>
                   </div>
@@ -109,10 +112,11 @@ export function Pricing() {
                   <Button 
                     className={`w-full transition-all duration-300 ${
                       plan.popular 
-                        ? 'bg-green-500 hover:bg-green-600 text-black hover:scale-105 hover:shadow-lg hover:shadow-green-500/50' 
-                        : 'border-green-500/30 hover:bg-green-500/10 text-green-500 hover:border-green-500/60 hover:scale-105'
+                        ? 'bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-105 hover:shadow-lg hover:shadow-primary/45' 
+                        : 'border-accent/30 hover:bg-accent/10 text-accent hover:border-accent/60 hover:scale-105'
                     } group-hover:shadow-xl`}
                     variant={plan.popular ? "default" : "outline"}
+                    onClick={() => navigate("/getting-started")}
                   >
                     Get Started
                   </Button>
@@ -120,7 +124,7 @@ export function Pricing() {
                   <div className="space-y-3 pt-4">
                     {plan.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-3">
-                        <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                         <span className="text-sm">{feature}</span>
                       </div>
                     ))}
