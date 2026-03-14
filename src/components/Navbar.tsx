@@ -55,9 +55,9 @@ export function Navbar() {
             <button type="button" onClick={() => jumpTo("#how-it-works")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
             </button>
-            <button type="button" onClick={() => jumpTo("#pricing")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            {/* <button type="button" onClick={() => jumpTo("#pricing")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Pricing
-            </button>
+            </button> */}
             <button type="button" onClick={() => navigate("/about")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               About
             </button>

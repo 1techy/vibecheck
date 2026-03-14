@@ -5,8 +5,8 @@ import { Navbar } from "./components/Navbar"
 import { Hero } from "./components/Hero"
 import { HowItWorks } from "./components/HowItWorks"
 import { Features } from "./components/Features"
-import { SampleReport } from "./components/SampleReport"
-import { Pricing } from "./components/Pricing"
+//import { SampleReport } from "./components/SampleReport"
+//import { Pricing } from "./components/Pricing"
 import { GettingStarted } from "./components/GettingStarted"
 import { AnimatedPixelGrid } from "./components/AnimatedPixelGrid"
 import { AboutPage } from "./components/AboutPage"
@@ -45,8 +45,8 @@ function LandingPage() {
         <Hero />
         <HowItWorks />
         <Features />
-        <SampleReport />
-        <Pricing />
+        {/* <SampleReport /> */}
+        {/* <Pricing /> */}
         
         {/* Simplified Footer */}
         <footer className="border-t border-border/40 bg-background/90 backdrop-blur-md py-8">

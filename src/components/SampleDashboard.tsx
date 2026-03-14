@@ -47,7 +47,7 @@ export function SampleDashboard() {
           className="flex flex-col lg:flex-row lg:items-center justify-between gap-4"
         >
           <div>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Security cockpit</p>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-2">Security Dashboard</p>
             <div className="flex items-center gap-2 text-xl sm:text-2xl font-semibold">
               <span>acme-corp</span>
               <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -175,6 +175,8 @@ export function SampleDashboard() {
                 <div className="flex items-center justify-between"><span>Node</span><span className="text-muted-foreground">v18.x</span></div>
                 <div className="flex items-center justify-between"><span>Framework</span><span className="text-muted-foreground">express</span></div>
                 <div className="flex items-center justify-between"><span>Last scanned</span><span className="text-muted-foreground">13:46</span></div>
+                <div className="flex items-center justify-between"><span>Languages</span><span className="text-muted-foreground">Python, JavaScript</span></div>
+                <div className="flex items-center justify-between"><span>Deployed</span><span className="text-muted-foreground">Yes</span></div>
               </div>
             </div>
           </motion.div>

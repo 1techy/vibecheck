@@ -34,10 +34,10 @@ export function SampleReport() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-            Preview the <span className="text-primary">retro-tech dashboard</span>
+            Preview the <span className="text-primary">dashboard</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A clean, captivating command center designed to keep users engaged after onboarding.
+            A simple command center .
           </p>
         </motion.div>
 

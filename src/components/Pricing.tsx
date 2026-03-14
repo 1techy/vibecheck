@@ -68,7 +68,7 @@ export function Pricing() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight mb-6">
-            Simple, <span className="text-primary">retention-ready pricing</span>
+            Simple <span className="text-primary">pricing</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Choose the plan that fits your workflow. All plans include a 14-day free trial.
