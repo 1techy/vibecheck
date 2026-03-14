@@ -111,7 +111,7 @@ export function SampleDashboard() {
           >
             <div>
               <p className="text-sm text-muted-foreground mb-3">Security score</p>
-              <div className="h-24 w-24 mx-auto rounded-full border-8 border-primary/25 border-t-primary flex items-center justify-center animate-spin [animation-duration:7s]">
+              <div className="h-24 w-24 mx-auto rounded-full border-8 border-primary/25 border-t-primary flex items-center justify-center">
                 <span className="text-2xl font-semibold text-primary">B+</span>
               </div>
             </div>
@@ -175,14 +175,6 @@ export function SampleDashboard() {
                 <div className="flex items-center justify-between"><span>Node</span><span className="text-muted-foreground">v18.x</span></div>
                 <div className="flex items-center justify-between"><span>Framework</span><span className="text-muted-foreground">express</span></div>
                 <div className="flex items-center justify-between"><span>Last scanned</span><span className="text-muted-foreground">13:46</span></div>
-              </div>
-            </div>
-            <div className="retro-panel p-5">
-              <p className="text-sm text-muted-foreground mb-2">Vulnerability trend</p>
-              <div className="h-24 rounded-md border border-border/60 bg-muted/20 flex items-end gap-1 px-2 pb-2">
-                {[40, 38, 35, 31, 29, 24].map((h, i) => (
-                  <div key={i} className="flex-1 rounded-sm bg-gradient-to-t from-primary/80 to-accent/80" style={{ height: `${h}%` }} />
-                ))}
               </div>
             </div>
           </motion.div>

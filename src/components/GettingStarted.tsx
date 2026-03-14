@@ -2,9 +2,36 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Github, LayoutDashboard } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { useState } from "react"
+import { isSupabaseConfigured, supabase } from "@/lib/supabase"
 
 export function GettingStarted() {
   const navigate = useNavigate()
+  const [authError, setAuthError] = useState<string | null>(null)
+  const [isRedirecting, setIsRedirecting] = useState(false)
+
+  const handleGithubLogin = async () => {
+    setAuthError(null)
+
+    if (!isSupabaseConfigured || !supabase) {
+      setAuthError("Supabase is not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.")
+      return
+    }
+
+    setIsRedirecting(true)
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: `${window.location.origin}/getting-started`,
+      },
+    })
+
+    if (error) {
+      setAuthError(error.message)
+      setIsRedirecting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-24">
@@ -42,12 +69,11 @@ export function GettingStarted() {
             <div className="space-y-4">
               <Button
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold gap-2 py-5 text-sm sm:text-base"
-                onClick={() => {
-                  window.location.href = "/auth/github"
-                }}
+                onClick={handleGithubLogin}
+                disabled={isRedirecting}
               >
                 <Github className="h-5 w-5" />
-                Continue with GitHub
+                {isRedirecting ? "Redirecting..." : "Continue with GitHub"}
               </Button>
 
               <Button
@@ -63,6 +89,12 @@ export function GettingStarted() {
                 We request read access to repository metadata and pull requests to identify generated changes and run security checks.
                 Access can be revoked any time from GitHub settings.
               </p>
+
+              {authError && (
+                <p className="text-xs text-red-400 border border-red-400/30 bg-red-500/10 rounded-md px-3 py-2">
+                  {authError}
+                </p>
+              )}
             </div>
           </motion.div>
         </motion.div>

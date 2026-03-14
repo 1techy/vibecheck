@@ -12,7 +12,7 @@ export function Pricing() {
       name: "Starter Loop",
       price: "$29",
       period: "/month",
-      description: "For early-stage teams validating secure AI workflows.",
+      description: "For personal projects validating secure AI workflows.",
       features: [
         "Up to 5 repositories",
         "100 scans per month",
@@ -25,7 +25,7 @@ export function Pricing() {
       name: "Retention Pro",
       price: "$99",
       period: "/month",
-      description: "For growing teams optimizing engagement and remediation speed.",
+      description: "For advanced projects optimizing engagement and remediation speed.",
       features: [
         "Unlimited repositories",
         "Unlimited scans",
@@ -71,7 +71,7 @@ export function Pricing() {
             Simple, <span className="text-primary">retention-ready pricing</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your team. All plans include a 14-day free trial.
+            Choose the plan that fits your workflow. All plans include a 14-day free trial.
           </p>
         </motion.div>
 

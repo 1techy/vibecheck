@@ -34,6 +34,17 @@ export function Hero() {
     },
   }
 
+  const scanLineVariants: Variants = {
+    animate: {
+      y: [0, 330, 0],
+      transition: {
+        duration: 7,
+        repeat: Infinity as number,
+        ease: "linear",
+      },
+    },
+  }
+
   return (
     <section className="relative min-h-screen pt-24 pb-14 overflow-hidden flex flex-col items-center">
       <div className="absolute inset-0 -z-10">
@@ -51,16 +62,16 @@ export function Hero() {
           <motion.div variants={itemVariants} className="space-y-6 xl:col-span-7">
             <Badge variant="outline" className="retro-pill border-primary/40 bg-primary/10 text-primary">
               <Sparkles className="h-3 w-3" />
-              Retro-tech scanning cockpit
+              Personal security cockpit
             </Badge>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight">
-              Keep teams locked in with a cleaner, faster
-              <span className="text-primary"> security loop</span>.
+              Secure your personal code with a cleaner, faster
+              <span className="text-primary"> scan workflow</span>.
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Scan AI-generated code in minutes, ship confidence signals, and retain developers with clear next actions instead of noisy alerts.
+              Scan AI-generated code in minutes, review actionable fixes, and keep your project protected without noisy dashboards.
             </p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-2 pt-2">
@@ -107,8 +118,8 @@ export function Hero() {
               {[
                 { label: "Avg. setup", value: "7 min" },
                 { label: "False positives", value: "-42%" },
-                { label: "Weekly active", value: "+31%" },
-                { label: "Teams retained", value: "94%" },
+                { label: "Issues auto-fixed", value: "68%" },
+                { label: "Projects secured", value: "1+" },
               ].map((item) => (
                 <div key={item.label} className="retro-panel p-3">
                   <p className="text-lg font-semibold text-foreground">{item.value}</p>
@@ -123,45 +134,53 @@ export function Hero() {
             className="xl:col-span-5"
           >
             <div className="retro-panel overflow-hidden">
-              <div className="border-b border-border/70 px-4 py-3 flex items-center justify-between bg-secondary/40">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="border-b border-border/70 px-4 py-3 flex items-center gap-2 bg-secondary/40">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-primary/90" />
+                <div className="ml-2 text-sm text-muted-foreground inline-flex items-center gap-2">
                   <TerminalSquare className="h-4 w-4 text-accent" />
-                  live_scan.console
+                  code_terminal.scan
                 </div>
-                <Badge variant="outline" className="border-primary/40 text-primary bg-primary/10">
-                  Protected
+                <Badge variant="outline" className="ml-auto border-primary/40 text-primary bg-primary/10">
+                  Active
                 </Badge>
               </div>
 
-              <div className="p-5 space-y-5">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-lg border border-border/70 bg-background/80 p-3">
-                    <p className="text-xs text-muted-foreground">Active repos</p>
-                    <p className="text-xl font-semibold">248</p>
-                  </div>
-                  <div className="rounded-lg border border-border/70 bg-background/80 p-3">
-                    <p className="text-xs text-muted-foreground">Critical fixed</p>
-                    <p className="text-xl font-semibold text-primary">97%</p>
-                  </div>
+              <div className="relative p-5 space-y-4 min-h-[360px] overflow-hidden">
+                <motion.div
+                  variants={scanLineVariants}
+                  animate="animate"
+                  className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-70 pointer-events-none"
+                />
+
+                <p className="font-mono text-xs text-primary">$ vibecheck scan ./src --auto-fix --github</p>
+                <p className="font-mono text-xs text-muted-foreground">Analyzing 1,247 files...</p>
+
+                <div className="space-y-2 font-mono text-xs">
+                  <p className="text-red-300">[HIGH] SQL Injection — src/auth/login.ts:42</p>
+                  <p className="text-yellow-300">[MED] Weak hash usage — src/crypto/hash.ts:11</p>
+                  <p className="text-primary">[FIXED] CORS policy hardened — src/middleware/cors.ts:5</p>
                 </div>
 
-                <div className="space-y-2">
-                  {[
-                    { title: "Injection attempt blocked", info: "api/users.ts:142", tone: "text-red-400" },
-                    { title: "Weak hash migrated", info: "crypto/hash.ts:11", tone: "text-yellow-300" },
-                    { title: "CORS policy hardened", info: "middleware/cors.ts:5", tone: "text-primary" },
-                  ].map((log) => (
-                    <div key={log.title} className="rounded-md border border-border/70 bg-muted/20 px-3 py-2">
-                      <p className={`text-sm font-medium ${log.tone}`}>{log.title}</p>
-                      <p className="text-xs text-muted-foreground">{log.info}</p>
-                    </div>
-                  ))}
+                <div className="rounded-md border border-border/70 bg-black/35 p-3 space-y-2">
+                  <p className="text-[11px] text-muted-foreground font-mono">before</p>
+                  <pre className="text-[11px] text-red-300 leading-relaxed whitespace-pre-wrap break-words font-mono">
+                    {"const query = \"SELECT * FROM users WHERE username='${username}' AND password='${password}'\""}
+                  </pre>
+                </div>
+
+                <div className="rounded-md border border-primary/30 bg-primary/10 p-3 space-y-2">
+                  <p className="text-[11px] text-primary font-mono">suggested fix</p>
+                  <pre className="text-[11px] text-primary leading-relaxed whitespace-pre-wrap break-words font-mono">
+                    {"const query = \"SELECT * FROM users WHERE username=$1 AND password=$2\"\nawait db.execute(query, [username, password])"}
+                  </pre>
                 </div>
 
                 <div className="rounded-md border border-primary/40 bg-primary/10 p-3">
-                  <p className="text-xs uppercase tracking-wider text-primary">Retention signal</p>
+                  <p className="text-xs uppercase tracking-wider text-primary">Scan summary</p>
                   <p className="text-sm text-muted-foreground mt-1">
-                    82% of teams return within 24h after first successful fix cycle.
+                    3 vulnerabilities found · 1 fix applied · 2 patches ready.
                   </p>
                 </div>
               </div>

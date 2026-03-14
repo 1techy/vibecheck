@@ -7,12 +7,12 @@ const values = [
   {
     icon: ShieldCheck,
     title: "Security without friction",
-    description: "We remove noisy findings so teams focus on the few fixes that materially reduce risk.",
+    description: "We remove noisy findings so you focus on the few fixes that materially reduce risk.",
   },
   {
     icon: Users,
-    title: "Built for adoption",
-    description: "Clear language and guided workflows help non-security teams stay engaged week after week.",
+    title: "Built for solo builders",
+    description: "Clear language and guided workflows help you stay engaged week after week.",
   },
   {
     icon: Sparkles,
@@ -45,10 +45,10 @@ export function AboutPage() {
         >
           <p className="retro-pill mx-auto w-fit">About vibecheck</p>
           <h1 className="retro-heading">
-            A retention-focused security experience for AI-era engineering teams
+            A retention-focused security experience for AI-era personal projects
           </h1>
           <p className="retro-subtle max-w-3xl mx-auto text-lg">
-            We built vibecheck to make secure coding habits feel fast, visible, and rewarding. Teams that see progress stay engaged, and engaged teams fix more issues.
+            We built vibecheck to make secure coding habits feel fast, visible, and rewarding. Personal projects improve quickly when progress is visible.
           </p>
         </motion.div>
 

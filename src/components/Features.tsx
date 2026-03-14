@@ -21,7 +21,7 @@ const features = [
   {
     icon: Lock,
     title: "Privacy-first posture",
-    description: "Encrypted scans and policy controls designed for modern security teams.",
+    description: "Encrypted scans and policy controls designed for modern security workflows.",
   },
   {
     icon: BarChart3,
@@ -79,7 +79,7 @@ export function Features() {
             Built for <span className="text-primary">repeat engagement</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Every feature nudges teams toward faster fixes and stronger daily usage habits.
+            Every feature nudges you toward faster fixes and stronger daily security habits.
           </p>
         </motion.div>
 

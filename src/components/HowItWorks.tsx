@@ -12,7 +12,7 @@ const steps = [
   {
     icon: Shield,
     title: "Run prioritized scans",
-    description: "Retro-tech dashboards surface high-impact vulnerabilities first so teams stay focused.",
+    description: "Retro-tech dashboards surface high-impact vulnerabilities first so you stay focused.",
   },
   {
     icon: CheckCircle2,
@@ -57,7 +57,7 @@ export function HowItWorks() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-            How <span className="text-primary">vibecheck</span> keeps teams active
+            How <span className="text-primary">vibecheck</span> keeps you moving
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Three focused steps built for momentum and repeat usage.
@@ -110,7 +110,7 @@ export function HowItWorks() {
         >
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Clock3 className="h-4 w-4 text-accent" />
-            First meaningful scan completes in under 10 minutes for most teams.
+            First meaningful scan completes in under 10 minutes for most projects.
           </div>
           <span className="text-sm font-medium text-primary">Retention-first onboarding flow</span>
         </motion.div>

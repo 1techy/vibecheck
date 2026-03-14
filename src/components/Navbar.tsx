@@ -9,6 +9,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const isHome = location.pathname === "/"
   const { triggerConfetti } = useConfetti()
 
   const jumpTo = (id: string) => {
@@ -64,10 +65,12 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center space-x-3">
-            <div className="hidden md:inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
-              <Activity className="h-3.5 w-3.5" />
-              Live threat feed
-            </div>
+            {!isHome && (
+              <div className="hidden md:inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
+                <Activity className="h-3.5 w-3.5" />
+                Personal status
+              </div>
+            )}
             <Button 
               className="hidden sm:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               onClick={handleGetStarted}
