@@ -204,13 +204,13 @@ export function SampleDashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-2">
             <div className="p-5 border-b lg:border-b-0 lg:border-r border-border/60">
               <p className="text-xs text-muted-foreground mb-2">Before</p>
-              <pre className="text-xs rounded-md bg-black/35 border border-border/60 p-3 overflow-auto leading-relaxed text-red-300">
+              <pre className="text-xs rounded-md bg-black/35 border border-border/60 p-3 leading-relaxed text-red-300 whitespace-pre-wrap break-words">
                 {"const query = \"SELECT * FROM users WHERE username='${username}' AND password='${password}'\""}
               </pre>
             </div>
             <div className="p-5">
               <p className="text-xs text-muted-foreground mb-2">Suggested fix</p>
-              <pre className="text-xs rounded-md bg-black/35 border border-border/60 p-3 overflow-auto leading-relaxed text-primary">
+              <pre className="text-xs rounded-md bg-black/35 border border-border/60 p-3 leading-relaxed text-primary whitespace-pre-wrap break-words">
                 {"const query = \"SELECT * FROM users WHERE username=$1 AND password=$2\"\nconst result = await db.execute(query, [username, password])"}
               </pre>
               <Button className="mt-3 bg-primary hover:bg-primary/90 text-primary-foreground">Apply Fix</Button>
