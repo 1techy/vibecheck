@@ -91,7 +91,7 @@ export function GettingStarted() {
               </p>
 
               {authError && (
-                <p className="text-xs text-red-400 border border-red-400/30 bg-red-500/10 rounded-md px-3 py-2">
+                <p className="text-xs text-red-100 border border-red-300/45 bg-red-500/20 rounded-md px-3 py-2">
                   {authError}
                 </p>
               )}
