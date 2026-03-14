@@ -43,6 +43,18 @@ export default defineConfig([
 ])
 ```
 
+## Supabase GitHub OAuth setup
+
+1. Copy `.env.example` to `.env`.
+2. Add your Supabase project values:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+3. In Supabase Auth settings, enable GitHub provider and use:
+   - Callback URL: `https://<your-project-id>.supabase.co/auth/v1/callback`
+4. In your GitHub OAuth App, set:
+   - Homepage URL: `http://localhost:5173` (for local dev)
+   - Authorization callback URL: the Supabase callback URL above
+
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
