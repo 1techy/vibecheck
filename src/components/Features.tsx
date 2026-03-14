@@ -90,7 +90,7 @@ export function Features() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {features.map((feature, index) => {
+          {features.map((feature) => {
             const Icon = feature.icon
 
             return (
