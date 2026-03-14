@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import type { Variants } from "framer-motion"
-import { Github, Gitlab, Code2, ArrowRight, Sparkles, TerminalSquare } from "lucide-react"
+import { Github, Gitlab, Code2, ArrowRight, TerminalSquare } from "lucide-react"
 import { useConfetti } from "@/hooks/useConfetti"
 import { useNavigate } from "react-router-dom"
 
@@ -60,10 +60,6 @@ export function Hero() {
           animate="visible"
         >
           <motion.div variants={itemVariants} className="space-y-6 xl:col-span-7">
-            <Badge variant="outline" className="retro-pill border-primary/40 bg-primary/10 text-primary">
-              <Sparkles className="h-3 w-3" />
-              Personal security cockpit
-            </Badge>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight">
               Secure your personal code with a cleaner, faster
@@ -154,7 +150,7 @@ export function Hero() {
                   className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-70 pointer-events-none"
                 />
 
-                <p className="font-mono text-xs text-primary">$ vibecheck scan ./src --auto-fix --github</p>
+              
                 <p className="font-mono text-xs text-muted-foreground">Analyzing 1,247 files...</p>
 
                 <div className="space-y-2 font-mono text-xs">

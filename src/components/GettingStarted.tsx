@@ -2,33 +2,112 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Github, LayoutDashboard } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { isSupabaseConfigured, supabase } from "@/lib/supabase"
+
+type OAuthError = { description: string | null; code: string | null }
+
+const getOAuthErrorFromUrl = (): OAuthError => {
+  const searchParams = new URLSearchParams(window.location.search)
+  const hash = window.location.hash.startsWith("#")
+    ? window.location.hash.slice(1)
+    : window.location.hash
+  const hashParams = new URLSearchParams(hash)
+
+  const description =
+    searchParams.get("error_description") ?? hashParams.get("error_description")
+  const code =
+    searchParams.get("error_code") ?? hashParams.get("error_code")
+
+  return { description, code }
+}
 
 export function GettingStarted() {
   const navigate = useNavigate()
   const [authError, setAuthError] = useState<string | null>(null)
+  const [isProviderError, setIsProviderError] = useState(false)
   const [isRedirecting, setIsRedirecting] = useState(false)
+  const oauthRedirectUrl =
+    import.meta.env.VITE_SUPABASE_AUTH_REDIRECT_URL?.trim() ||
+    `${window.location.origin}/getting-started`
+  const supabaseCallbackUrl = import.meta.env.VITE_SUPABASE_URL
+    ? `${import.meta.env.VITE_SUPABASE_URL}/auth/v1/callback`
+    : "https://<your-project-id>.supabase.co/auth/v1/callback"
+
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) {
+      return
+    }
+
+    const { description, code } = getOAuthErrorFromUrl()
+    if (description) {
+      setAuthError(description)
+      if (code === "unexpected_failure" || description.toLowerCase().includes("user profile")) {
+        setIsProviderError(true)
+      }
+    }
+
+    let isMounted = true
+
+    void supabase.auth.getSession().then(({ data, error }) => {
+      if (!isMounted) {
+        return
+      }
+
+      if (error) {
+        setAuthError(error.message)
+        return
+      }
+
+      if (data.session) {
+        navigate("/dashboard", { replace: true })
+      }
+    })
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        navigate("/dashboard", { replace: true })
+      }
+    })
+
+    return () => {
+      isMounted = false
+      authListener.subscription.unsubscribe()
+    }
+  }, [navigate])
 
   const handleGithubLogin = async () => {
     setAuthError(null)
 
     if (!isSupabaseConfigured || !supabase) {
-      setAuthError("Supabase is not configured yet. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.")
+      setAuthError("Supabase is not configured yet. Add real VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY values.")
       return
     }
 
     setIsRedirecting(true)
+    console.log("[Auth] Initiating GitHub OAuth — redirectTo:", oauthRedirectUrl)
 
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
-        redirectTo: `${window.location.origin}/getting-started`,
+        redirectTo: oauthRedirectUrl,
+        scopes: "read:user user:email repo",
+        skipBrowserRedirect: true,
       },
     })
 
+    console.log("[Auth] signInWithOAuth result:", { url: data?.url, error })
+
     if (error) {
       setAuthError(error.message)
+      setIsRedirecting(false)
+      return
+    }
+
+    if (data?.url) {
+      window.location.href = data.url
+    } else {
+      setAuthError("Could not get OAuth URL from Supabase. Check your Supabase URL and anon key in .env.")
       setIsRedirecting(false)
     }
   }
@@ -86,11 +165,11 @@ export function GettingStarted() {
               </Button>
 
               <p className="text-xs text-muted-foreground leading-relaxed">
-                We request read access to repository metadata and pull requests to identify generated changes and run security checks.
+                We request read access to your GitHub profile and repositories so your dashboard can list account details and projects.
                 Access can be revoked any time from GitHub settings.
               </p>
 
-              {authError && (
+              {authError && !isProviderError && (
                 <p className="text-xs text-red-100 border border-red-300/45 bg-red-500/20 rounded-md px-3 py-2">
                   {authError}
                 </p>

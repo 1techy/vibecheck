@@ -43,13 +43,9 @@ export function AboutPage() {
           transition={{ duration: 0.5 }}
           className="space-y-4 text-center"
         >
-          <p className="retro-pill mx-auto w-fit">About vibecheck</p>
           <h1 className="retro-heading">
-            A retention-focused security experience for AI-era personal projects
+            An easy way to secure your vibe-coded applications
           </h1>
-          <p className="retro-subtle max-w-3xl mx-auto text-lg">
-            We built vibecheck to make secure coding habits feel fast, visible, and rewarding. Personal projects improve quickly when progress is visible.
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

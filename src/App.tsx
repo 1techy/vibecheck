@@ -11,6 +11,7 @@ import { GettingStarted } from "./components/GettingStarted"
 import { AnimatedPixelGrid } from "./components/AnimatedPixelGrid"
 import { AboutPage } from "./components/AboutPage"
 import { SampleDashboard } from "./components/SampleDashboard"
+import { GitHubDashboard } from "./components/GitHubDashboard"
 
 function ScrollToHash() {
   const location = useLocation()
@@ -21,7 +22,13 @@ function ScrollToHash() {
       return
     }
 
-    const element = document.querySelector(location.hash)
+    // OAuth callbacks can include hash fragments like #error=... which are not valid CSS selectors.
+    const isAnchorHash = /^#[A-Za-z][\w:-]*$/.test(location.hash)
+    if (!isAnchorHash) {
+      return
+    }
+
+    const element = document.getElementById(location.hash.slice(1))
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" })
     }
@@ -87,6 +94,12 @@ function App() {
                 <>
                   <Navbar />
                   <SampleDashboard />
+                </>
+              } />
+              <Route path="/dashboard" element={
+                <>
+                  <Navbar />
+                  <GitHubDashboard />
                 </>
               } />
             </Routes>

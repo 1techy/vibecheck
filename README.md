@@ -49,11 +49,23 @@ export default defineConfig([
 2. Add your Supabase project values:
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
-3. In Supabase Auth settings, enable GitHub provider and use:
-   - Callback URL: `https://<your-project-id>.supabase.co/auth/v1/callback`
-4. In your GitHub OAuth App, set:
-   - Homepage URL: `http://localhost:5173` (for local dev)
-   - Authorization callback URL: the Supabase callback URL above
+  - Optional: `VITE_SUPABASE_AUTH_REDIRECT_URL=http://localhost:5173/getting-started`
+3. In Supabase Auth > URL Configuration, set:
+  - Site URL: `http://localhost:5173`
+  - Redirect URLs: add `http://localhost:5173/getting-started` (or your value from `VITE_SUPABASE_AUTH_REDIRECT_URL`)
+4. In Supabase Auth > Providers > GitHub, enable the provider.
+5. In your GitHub OAuth App, set:
+  - Homepage URL: `http://localhost:5173` (for local dev)
+  - Authorization callback URL: `https://<your-project-id>.supabase.co/auth/v1/callback`
+6. Sign in from `/getting-started`; on success, the app redirects to `/dashboard` and loads your GitHub user profile + repositories.
+
+### Common OAuth failures
+
+- `Supabase is not configured yet`: `.env` still has placeholder values. Replace with real project values.
+- `redirect_to is not allowed`: add the exact redirect URL to Supabase Redirect URLs.
+- `The redirect_uri is not associated with this application`: in GitHub OAuth App settings, callback URL does not exactly match Supabase callback URL. Set it to `https://<your-project-id>.supabase.co/auth/v1/callback`.
+- `Error getting user profile from external provider`: ensure GitHub OAuth is configured in Supabase with the correct Client ID/Secret, and login requests include `user:email` scope.
+- Login succeeds but returns to login page: ensure callback returns to `/getting-started` and the app is running on the same origin.
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 

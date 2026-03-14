@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import type { Variants } from "framer-motion"
-import { CheckCircle2, Code2, Shield, Clock3 } from "lucide-react"
+import { CheckCircle2, Code2, Shield } from "lucide-react"
 
 const steps = [
   {
@@ -99,20 +99,6 @@ export function HowItWorks() {
               </motion.div>
             )
           })}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.25, duration: 0.35 }}
-          className="mt-8 retro-panel px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
-        >
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Clock3 className="h-4 w-4 text-accent" />
-            First meaningful scan completes in under 10 minutes for most projects.
-          </div>
-          <span className="text-sm font-medium text-primary">Retention-first onboarding flow</span>
         </motion.div>
       </div>
     </section>
