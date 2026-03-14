@@ -1,61 +1,82 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/ui/mode-toggle"
-import { Menu } from "lucide-react"
+import { Menu, Shield, Activity } from "lucide-react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useConfetti } from "@/hooks/useConfetti"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
   const { triggerConfetti } = useConfetti()
+
+  const jumpTo = (id: string) => {
+    if (location.pathname === "/") {
+      document.querySelector(id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+      setMobileOpen(false)
+      return
+    }
+
+    navigate(`/${id}`)
+    setMobileOpen(false)
+  }
 
   const handleGetStarted = () => {
     triggerConfetti()
     navigate('/getting-started')
+    setMobileOpen(false)
   }
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur-md relative">
+    <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2 flex-shrink-0">
-            <div className="h-8 w-8 rounded-lg bg-green-500 flex items-center justify-center">
-              <span className="text-black font-bold text-lg">V</span>
+        <div className="flex items-center justify-between h-16 gap-3">
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="flex items-center space-x-3 flex-shrink-0"
+          >
+            <div className="h-8 w-8 rounded-md border border-primary/50 bg-primary/15 flex items-center justify-center">
+              <Shield className="h-4 w-4 text-primary" />
             </div>
-            <span className="text-xl font-semibold tracking-tight hidden sm:inline">
-              vibe<span className="text-green-500">check</span>
+            <span className="text-lg font-semibold tracking-tight hidden sm:inline">
+              vibe<span className="text-primary">check</span>
             </span>
-          </div>
+          </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="hidden lg:flex items-center rounded-full border border-border/80 bg-card/70 px-5 py-2 gap-6">
+            <button type="button" onClick={() => navigate("/")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Home
+            </button>
+            <button type="button" onClick={() => jumpTo("#features")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Features
-            </a>
-            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button type="button" onClick={() => jumpTo("#how-it-works")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
-            </a>
-            <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button type="button" onClick={() => jumpTo("#pricing")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Pricing
-            </a>
-            <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button type="button" onClick={() => navigate("/about")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               About
-            </a>
+            </button>
           </div>
 
-          {/* Right side CTA and Theme */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
+            <div className="hidden md:inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
+              <Activity className="h-3.5 w-3.5" />
+              Live threat feed
+            </div>
             <Button 
-              className="hidden sm:inline-flex bg-green-500 hover:bg-green-600 text-black font-semibold"
+              className="hidden sm:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               onClick={handleGetStarted}
             >
-              Get Started
+              Launch Scan
             </Button>
             <ModeToggle />
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-accent/20 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               <Menu className="h-5 w-5" />
@@ -63,26 +84,28 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {mobileOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            <a href="#features" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <div className="lg:hidden pb-4 space-y-2">
+            <button type="button" onClick={() => navigate("/")} className="block w-full text-left px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Home
+            </button>
+            <button type="button" onClick={() => jumpTo("#features")} className="block w-full text-left px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               Features
-            </a>
-            <a href="#how-it-works" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button type="button" onClick={() => jumpTo("#how-it-works")} className="block w-full text-left px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
-            </a>
-            <a href="#pricing" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button type="button" onClick={() => jumpTo("#pricing")} className="block w-full text-left px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               Pricing
-            </a>
-            <a href="#about" className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button type="button" onClick={() => navigate("/about")} className="block w-full text-left px-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
               About
-            </a>
+            </button>
             <Button 
-              className="w-full bg-green-500 hover:bg-green-600 text-black font-semibold"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               onClick={handleGetStarted}
             >
-              Get Started
+              Launch Scan
             </Button>
           </div>
         )}

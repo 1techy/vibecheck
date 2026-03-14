@@ -5,33 +5,33 @@ import { AlertTriangle, Brain, Zap, Lock, BarChart3, GitBranch } from "lucide-re
 const features = [
   {
     icon: Brain,
-    title: "AI-trained detection",
-    description: "Models tuned to spot AI-generated patterns and subtle security smells in your code.",
+    title: "Behavior-aware AI detection",
+    description: "Models tuned for generated code patterns and risky behavior signatures.",
   },
   {
     icon: Zap,
-    title: "Lightning-fast scans",
-    description: "Analyze thousands of files in seconds with a low-noise, developer-friendly output.",
+    title: "Fast, low-friction scans",
+    description: "Analyze thousands of files with low-noise outputs developers keep coming back to.",
   },
   {
     icon: AlertTriangle,
-    title: "Critical issue focus",
-    description: "Surface the riskiest vulnerabilities first so you fix what matters most.",
+    title: "Critical-first prioritization",
+    description: "Surface highest-impact vulnerabilities first and suppress churn-heavy noise.",
   },
   {
     icon: Lock,
-    title: "Secure by default",
-    description: "Encrypted scans, private by design, aligned with modern security standards.",
+    title: "Privacy-first posture",
+    description: "Encrypted scans and policy controls designed for modern security teams.",
   },
   {
     icon: BarChart3,
-    title: "Clear reporting",
-    description: "Concise dashboards and trends that your team and security leads can actually use.",
+    title: "Retention intelligence",
+    description: "Usage and fix trend signals that show who is adopting and where they drop off.",
   },
   {
     icon: GitBranch,
-    title: "CI/CD native",
-    description: "Drop-in integrations for GitHub, GitLab, and your existing pipelines.",
+    title: "CI/CD native workflow",
+    description: "Drop-in integrations for GitHub, GitLab, and pipelines without process rewrites.",
   },
 ]
 
@@ -76,10 +76,10 @@ export function Features() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">
-            Powerful, <span className="text-green-500">practical features</span>
+            Built for <span className="text-primary">repeat engagement</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            A focused toolkit for keeping AI-generated code safe in real-world teams.
+            Every feature nudges teams toward faster fixes and stronger daily usage habits.
           </p>
         </motion.div>
 
@@ -100,8 +100,8 @@ export function Features() {
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.25 }}
               >
-                <div className="h-full rounded-xl border border-border/60 bg-background/60 p-6 shadow-sm backdrop-blur-sm hover:border-green-500/70 hover:shadow-lg hover:shadow-green-500/20 transition-all">
-                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10 text-green-500">
+                <div className="h-full rounded-xl border border-border/60 bg-card/70 p-6 shadow-sm backdrop-blur-sm hover:border-primary/70 hover:shadow-lg hover:shadow-accent/20 transition-all">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">
